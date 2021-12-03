@@ -1,0 +1,17 @@
+{
+	
+
+			"input": {
+				"text": "John Asher please pray.  its prayer time. close your eyes. be quiet."
+			},
+			"voice": {
+				"languageCode": "en-AU",
+				"ssmlGender": "FEMALE",
+                "name": "fil-PH"	
+			},
+			"audioConfig": {
+				"audioEncoding": "MP3"
+			}
+		
+	
+}
