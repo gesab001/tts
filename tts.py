@@ -40,7 +40,7 @@ def play(mytext):
       command = "ffplay -autoexit -nodisp welcome.mp3"
       subprocess.call(command, shell=False)
       
-
+count = 0
 def repeat(mytext):
   print("repeat texxt")
   keyboard.on_press_key("enter", lambda _:print("You pressed enter"))
@@ -66,7 +66,11 @@ while True:
     elif mytext.isdigit():
         print(mytext)    
         mytext = history[int(mytext)]  
-        play(mytext)
+        if "repeat" in mytext:
+           mytext = mytext.replace("repeat", "")
+           repeat(mytext)
+        else:
+           play(mytext)   
     else:
       history.append(mytext)  
       history.sort()
