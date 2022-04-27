@@ -8,6 +8,8 @@ import os
 import json
 import subprocess  
 import keyboard
+import time
+
 # The text that you want to convert to audio
 history = []
 keyboard.on_press_key("enter", lambda _:print("You pressed enter"))
@@ -39,6 +41,20 @@ def play(mytext):
       subprocess.call(command, shell=False)
       
 
+def repeat(mytext):
+  print("repeat texxt")
+  keyboard.on_press_key("enter", lambda _:print("You pressed enter"))
+  while True:
+  
+    try:  # used try so that if user pressed other than the given key error will not be shown
+        if keyboard.is_pressed('q'):  # if key 'q' is pressed 
+            print('You Pressed q Key!')
+            break  # finishing the loop
+    except:
+        break
+    play(mytext)
+    time.sleep(60)
+  
       
 while True:
     mytext = input('input: ')
@@ -55,7 +71,11 @@ while True:
       history.append(mytext)  
       history.sort()
       saveHistory()
-      play(mytext)
+      if "repeat" in mytext:
+       mytext = mytext.replace("repeat", "")
+       repeat(mytext)
+      else:
+        play(mytext)      
       # Language in which you want to convert
 
 
