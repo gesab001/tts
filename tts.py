@@ -12,7 +12,6 @@ import time
 
 # The text that you want to convert to audio
 history = []
-keyboard.on_press_key("enter", lambda _:print("You pressed enter"))
 
 
 def getHistory():
@@ -41,17 +40,27 @@ def play(mytext):
       subprocess.call(command, shell=False)
       
 count = 0
-def repeat(mytext):
+mytext = "" 
+
+def confirmRepeat(mytext):
+  command = input("command: ")
+  if command=="r":
+    play(mytext)
+  
+  
+def repeat(_mytext):
+  mytext = _mytext
   print("repeat texxt")
-  keyboard.on_press_key("enter", lambda _:print("You pressed enter"))
+  keyboard.on_press_key("ctrl", lambda _:confirmRepeat(mytext))
   while True:
   
     try:  # used try so that if user pressed other than the given key error will not be shown
         if keyboard.is_pressed('q'):  # if key 'q' is pressed 
             print('You Pressed q Key!')
+
             break  # finishing the loop
     except:
-        break
+      print("continue")
     play(mytext)
     time.sleep(60)
   
