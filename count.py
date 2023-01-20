@@ -107,58 +107,17 @@ def play(mytext):
       command = "ffplay -autoexit -nodisp welcome.mp3"
       subprocess.call(command, shell=False)
       
-count = 0
+count = 20
 mytext = "" 
 
-def confirmRepeat(mytext):
-  command = input("command: ")
-  if command=="r":
-    play(mytext)
-  
-  
-def repeat(_mytext):
-  mytext = _mytext
-  print("repeat texxt")
-  keyboard.on_press_key("ctrl", lambda _:confirmRepeat(mytext))
-  while True:
-  
-    try:  # used try so that if user pressed other than the given key error will not be shown
-        if keyboard.is_pressed('q'):  # if key 'q' is pressed 
-            print('You Pressed q Key!')
 
-            break  # finishing the loop
-    except:
-      print("continue")
-    play(mytext)
-    time.sleep(60)
-  
       
-while True:
-    options = ["history"] 
-    print(options)
-    mytext = input('input: ')
-    if mytext=="history":
-      history = getHistory ()
-      print(history)
-      for x in range(0, len(history)):
-        print(str(x) + " " + history[x])
-    elif mytext.isdigit():
-        print(mytext)    
-        mytext = history[int(mytext)]  
-        if "repeat" in mytext:
-           mytext = mytext.replace("repeat", "")
-           repeat(mytext)
-        else:
-           play(mytext)   
-    else:
-      history.append(mytext)  
-      history.sort()
-      saveHistory(history)
-      if "repeat" in mytext:
-       mytext = mytext.replace("repeat", "")
-       repeat(mytext)
-      else:
-        play(mytext)      
-      # Language in which you want to convert
+while count>0:
+    play(str(count))
+    count = count - 1
+    time.sleep(1)
+
+play("Ready or not, here I come")
+ 
 
 
